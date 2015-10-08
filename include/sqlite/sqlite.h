@@ -1,4 +1,6 @@
 #pragma once
+#include <codecvt>
+#include <locale>
 #include <string>
 #include <functional>
 #include <stdexcept>
@@ -174,12 +176,23 @@ public:
   database(std::u16string const & db_name) :
     db_(nullptr),
     connected_(false),
-    ownes_db_(true) {
+    ownes_db_(true)
+  {
     connected_ = sqlite3_open16(db_name.data(), &db_) == SQLITE_OK;
   }
 
   database(std::string const & db_name) :
-    database(std::u16string(db_name.begin(), db_name.end())) { }
+    db_(nullptr),
+    connected_(false),
+    ownes_db_(true)
+  {
+#ifdef _MSC_VER
+    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> conv;
+#else
+    std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t> conv;
+#endif
+    connected_ = sqlite3_open16(conv.from_bytes(db_name).data(), &db_) == SQLITE_OK;
+  }
 
   database(sqlite3* db) :
     db_(db),
