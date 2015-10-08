@@ -251,7 +251,7 @@ public:
 
 // int
 template<>
-database_binder&& operator<<(database_binder&& db, int const&& val) {
+inline database_binder&& operator<<(database_binder&& db, int const&& val) {
   if (sqlite3_bind_int(db.stmt_, db.index_, val) != SQLITE_OK) {
     db.throw_sqlite_error();
   }
@@ -260,7 +260,7 @@ database_binder&& operator<<(database_binder&& db, int const&& val) {
 }
 
 template<>
-void get_col_from_db(database_binder& db, int inx, int& val) {
+inline void get_col_from_db(database_binder& db, int inx, int& val) {
   if (sqlite3_column_type(db.stmt_, inx) == SQLITE_NULL) {
     val = 0;
   } else {
@@ -270,7 +270,7 @@ void get_col_from_db(database_binder& db, int inx, int& val) {
 
 // sqlite_int64
 template<>
-database_binder&& operator<<(database_binder&& db, sqlite_int64 const&& val) {
+inline database_binder&& operator<<(database_binder&& db, sqlite_int64 const&& val) {
   if (sqlite3_bind_int64(db.stmt_, db.index_, val) != SQLITE_OK) {
     db.throw_sqlite_error();
   }
@@ -280,7 +280,7 @@ database_binder&& operator<<(database_binder&& db, sqlite_int64 const&& val) {
 }
 
 template<>
-void get_col_from_db(database_binder& db, int inx, sqlite3_int64& i) {
+inline void get_col_from_db(database_binder& db, int inx, sqlite3_int64& i) {
   if (sqlite3_column_type(db.stmt_, inx) == SQLITE_NULL) {
     i = 0;
   } else {
@@ -290,7 +290,7 @@ void get_col_from_db(database_binder& db, int inx, sqlite3_int64& i) {
 
 // float
 template<>
-database_binder&& operator<<(database_binder&& db, float const&& val) {
+inline database_binder&& operator<<(database_binder&& db, float const&& val) {
   if (sqlite3_bind_double(db.stmt_, db.index_, double(val)) != SQLITE_OK) {
     db.throw_sqlite_error();
   }
@@ -300,7 +300,7 @@ database_binder&& operator<<(database_binder&& db, float const&& val) {
 }
 
 template<>
-void get_col_from_db(database_binder& db, int inx, float& f) {
+inline void get_col_from_db(database_binder& db, int inx, float& f) {
   if (sqlite3_column_type(db.stmt_, inx) == SQLITE_NULL) {
     f = 0;
   } else {
@@ -310,7 +310,7 @@ void get_col_from_db(database_binder& db, int inx, float& f) {
 
 // double
 template<>
-database_binder&& operator<<(database_binder&& db, double const&& val) {
+inline database_binder&& operator<<(database_binder&& db, double const&& val) {
   if (sqlite3_bind_double(db.stmt_, db.index_, val) != SQLITE_OK) {
     db.throw_sqlite_error();
   }
@@ -320,7 +320,7 @@ database_binder&& operator<<(database_binder&& db, double const&& val) {
 }
 
 template<>
-void get_col_from_db(database_binder& db, int inx, double& d) {
+inline void get_col_from_db(database_binder& db, int inx, double& d) {
   if (sqlite3_column_type(db.stmt_, inx) == SQLITE_NULL) {
     d = 0;
   } else {
@@ -330,7 +330,7 @@ void get_col_from_db(database_binder& db, int inx, double& d) {
 
 // std::string
 template<>
-void get_col_from_db(database_binder& db, int inx, std::string & s) {
+inline void get_col_from_db(database_binder& db, int inx, std::string & s) {
   if (sqlite3_column_type(db.stmt_, inx) == SQLITE_NULL) {
     s = std::string();
   } else {
@@ -340,7 +340,7 @@ void get_col_from_db(database_binder& db, int inx, std::string & s) {
 }
 
 template<>
-database_binder&& operator<<(database_binder&& db, std::string const&& txt) {
+inline database_binder&& operator<<(database_binder&& db, std::string const&& txt) {
   if (sqlite3_bind_text(db.stmt_, db.index_, txt.data(), -1, SQLITE_TRANSIENT) != SQLITE_OK) {
     db.throw_sqlite_error();
   }
@@ -351,7 +351,7 @@ database_binder&& operator<<(database_binder&& db, std::string const&& txt) {
 
 // std::u16string
 template<>
-void get_col_from_db(database_binder& db, int inx, std::u16string & w) {
+inline void get_col_from_db(database_binder& db, int inx, std::u16string & w) {
   if (sqlite3_column_type(db.stmt_, inx) == SQLITE_NULL) {
     w = std::u16string();
   } else {
@@ -361,7 +361,7 @@ void get_col_from_db(database_binder& db, int inx, std::u16string & w) {
 }
 
 template<>
-database_binder&& operator<<(database_binder&& db, std::u16string const&& txt) {
+inline database_binder&& operator<<(database_binder&& db, std::u16string const&& txt) {
   if (sqlite3_bind_text16(db.stmt_, db.index_, txt.data(), -1, SQLITE_TRANSIENT) != SQLITE_OK) {
     db.throw_sqlite_error();
   }

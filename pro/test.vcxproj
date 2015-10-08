@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\test\main.cc" />
+    <ClCompile Include="..\src\test\test.cc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{27225C11-AE9E-490A-BF1B-F487B77C6823}</ProjectGuid>

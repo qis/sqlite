@@ -14,5 +14,8 @@
     <ClCompile Include="..\src\test\main.cc">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\test\test.cc">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
