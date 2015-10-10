@@ -41,9 +41,9 @@ void get_col_from_db(database_binder& db, int index, T& val);
 
 class database_binder {
 private:
-  sqlite3* const db_;
+  sqlite3* const db_ = nullptr;
   std::u16string sql_;
-  sqlite3_stmt* stmt_;
+  sqlite3_stmt* stmt_ = nullptr;
   int index_ = 1;
 
   bool throw_exceptions_ = true;
@@ -111,12 +111,12 @@ private:
   friend void get_col_from_db(database_binder& ddb, int index, T& val);
 
 protected:
-  database_binder(sqlite3* db, const std::u16string& sql) : db_(db), sql_(sql), stmt_(nullptr) {
+  database_binder(sqlite3* db, const std::u16string& sql) : db_(db), sql_(sql) {
     prepare();
   }
 
 #ifdef _MSC_VER
-  database_binder(sqlite3* db, const std::wstring& sql) : db_(db), sql_(sql.begin(), sql.end()), stmt_(nullptr) {
+  database_binder(sqlite3* db, const std::wstring& sql) : db_(db), sql_(sql.begin(), sql.end()) {
     prepare();
   }
 #endif
@@ -181,17 +181,17 @@ public:
 
 class database {
 private:
-  sqlite3* db_;
+  sqlite3* db_ = nullptr;
   bool connected_;
   bool ownes_db_;
 
 public:
-  database(const std::u16string& db_name) : db_(nullptr), connected_(false), ownes_db_(true) {
+  database(const std::u16string& db_name) : connected_(false), ownes_db_(true) {
     connected_ = sqlite3_open16(db_name.data(), &db_) == SQLITE_OK;
   }
 
 #ifdef _MSC_VER
-  database(const std::wstring& db_name) : db_(nullptr), connected_(false), ownes_db_(true) {
+  database(const std::wstring& db_name) : connected_(false), ownes_db_(true) {
     connected_ = sqlite3_open16(db_name.data(), &db_) == SQLITE_OK;
   }
 #endif
