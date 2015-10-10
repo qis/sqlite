@@ -4,15 +4,16 @@ This is a fork of [aminroosta/sqlite_modern_cpp][source].
 ## Changes
 * Changed structure.
 * Code cleanup.
+* Added support for `wchar_t` and `std::wstring` on windows.
+* Added support for UTF-8 filenames and queries.
 
 ## Planned Changes
 * Perform a complete code audit.
 * Remove `sqlite3.h` from `sqlite.h` to speed up compilation times.
-* Add support for `std::wstring` (platform dependant).
 * Add support for other standard library types.
 
 ## Original Documentation
-This library is a lightweight modern wrapper around sqlite C api .
+This library is a lightweight modern wrapper around sqlite C api.
 
 ```c++
 #include<iostream>
