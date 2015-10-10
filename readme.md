@@ -11,7 +11,7 @@ This is a fork of [aminroosta/sqlite_modern_cpp][source].
 * Add support for other standard library types.
 
 ## Thread Safety
-According to the [SQLite Documentation][sqlite-doc-thread] the library is thread-safe by default.
+According to the [SQLite documentation][sqlite-doc-thread] the library is thread-safe by default.
 
 ## Original Documentation
 This library is a lightweight modern wrapper around sqlite C api.
