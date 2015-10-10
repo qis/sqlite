@@ -2,8 +2,6 @@
 This is a fork of [aminroosta/sqlite_modern_cpp][source].
 
 ## Changes
-* Changed structure.
-* Code cleanup.
 * Added support for `wchar_t` and `std::wstring` on windows.
 * Added support for UTF-8 filenames and queries.
 
