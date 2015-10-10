@@ -10,6 +10,9 @@ This is a fork of [aminroosta/sqlite_modern_cpp][source].
 * Remove `sqlite3.h` from `sqlite.h` to speed up compilation times.
 * Add support for other standard library types.
 
+## Thread Safety
+According to the [SQLite Documentation][sqlite-doc-thread] the library is thread-safe by default.
+
 ## Original Documentation
 This library is a lightweight modern wrapper around sqlite C api.
 
@@ -162,3 +165,4 @@ This software is distributed under the terms of the [MIT License][license].
 
 [source]: https://github.com/aminroosta/sqlite_modern_cpp
 [license]: http://www.opensource.org/licenses/mit-license.php
+[sqlite-doc-thread]: https://www.sqlite.org/compile.html#threadsafe
