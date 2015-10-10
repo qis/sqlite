@@ -9,9 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="include\extensions">
-      <UniqueIdentifier>{8d3555ed-ee55-4f71-805b-c31e7795a1d1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="include\utility">
       <UniqueIdentifier>{697ebba5-2040-423d-a3b9-130f7089788a}</UniqueIdentifier>
     </Filter>
@@ -30,18 +27,6 @@
     </ClInclude>
     <ClInclude Include="..\include\sqlite\utility\function_traits.h">
       <Filter>include\utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\sqlite\extensions\boost_optional.h">
-      <Filter>include\extensions</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\sqlite\extensions\boost_uuid.h">
-      <Filter>include\extensions</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\sqlite\extensions\std_time_t.h">
-      <Filter>include\extensions</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\sqlite\extensions\boost_json_spirit.h">
-      <Filter>include\extensions</Filter>
     </ClInclude>
     <ClInclude Include="..\include\sqlite\sqlite3.h">
       <Filter>include</Filter>

@@ -23,10 +23,6 @@
     <ClCompile Include="..\src\sqlite3.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\sqlite\extensions\boost_json_spirit.h" />
-    <ClInclude Include="..\include\sqlite\extensions\boost_optional.h" />
-    <ClInclude Include="..\include\sqlite\extensions\boost_uuid.h" />
-    <ClInclude Include="..\include\sqlite\extensions\std_time_t.h" />
     <ClInclude Include="..\include\sqlite\sqlite.h" />
     <ClInclude Include="..\include\sqlite\sqlite3.h" />
     <ClInclude Include="..\include\sqlite\utility\function_traits.h" />
