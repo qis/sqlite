@@ -410,19 +410,19 @@ database_binder&& operator<<(database_binder&& db, const T& val) {
 // Special case for string literals.
 template<std::size_t N>
 database_binder&& operator<<(database_binder&& db, const char(&STR)[N]) {
-  return std::move(db) << std::string(STR, N);
+  return std::move(db) << std::string(STR);
 }
 
 #ifdef _MSC_VER
 template<std::size_t N>
 database_binder&& operator<<(database_binder&& db, const wchar_t(&STR)[N]) {
-  return std::move(db) << std::wstring(STR, N);
+  return std::move(db) << std::wstring(STR);
 }
 #endif
 
 template<std::size_t N>
 database_binder&& operator<<(database_binder&& db, const char16_t(&STR)[N]) {
-  return std::move(db) << std::u16string(STR, N);
+  return std::move(db) << std::u16string(STR);
 }
 
 }  // namespace sqlite
