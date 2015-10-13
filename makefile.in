@@ -1,0 +1,62 @@
+# @configure_input@
+
+CC        = @CC@
+CXX       = @CXX@
+AR        = @AR@
+LIBS      = @LIBS@
+CFLAGS    = @CFLAGS@
+CXXFLAGS  = @CXXFLAGS@
+CPPFLAGS  = @CPPFLAGS@
+
+# Compiler Flags
+CXXFLAGS  += -stdlib=libc++
+
+# Compiler Warnings
+WARNINGS  = -Wall
+#WARNINGS  = -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-shadow -Wno-weak-vtables
+
+# Include Paths
+INCLUDES  := -Iinclude
+
+# Source Locations
+SRCPATHS  := src
+
+# Source Files
+SRCFILES  := $(wildcard $(patsubst %,%/*.cc,$(SRCPATHS)))
+
+# Build Paths
+OBJPATHS  := $(patsubst src%,obj%,$(SRCPATHS))
+
+# Object Files
+OBJFILES  := $(patsubst src/%.cc,obj/%.o,$(SRCFILES))
+
+# Output
+LIB := lib/libsqlite.a
+
+all: $(LIB)
+
+$(LIB): lib $(OBJPATHS) $(OBJFILES)
+	$(AR) rcs $@ $(OBJFILES)
+
+obj/%.o: src/%.cc
+	$(CXX) $(WARNINGS) $(CXXFLAGS) $(CPPFLAGS) $(INCLUDES) -c -o $@ $<
+
+bin lib $(OBJPATHS):
+	mkdir -p $@
+
+clean:
+	-rm $(OBJFILES) &>/dev/null
+
+bin/test: bin $(LIB)
+	$(CXX) -o bin/test $(CXXFLAGS) $(CPPFLAGS) $(INCLUDES) $(wildcard src/test/*.cc) $(LIBS) -Llib -lsqlite
+
+check: bin/test
+	bin/test
+
+makefile: makefile.in config.status
+	./config.status $@
+
+config.status: configure
+	./config.status --recheck
+
+.PHONY: all clean check

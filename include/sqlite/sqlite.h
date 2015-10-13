@@ -115,14 +115,14 @@ protected:
     prepare();
   }
 
+  database_binder(sqlite3* db, const std::string& sql) : database_binder(db, conv(sql)) {
+  }
+
 #ifdef _MSC_VER
   database_binder(sqlite3* db, const std::wstring& sql) : db_(db), sql_(sql.begin(), sql.end()) {
     prepare();
   }
 #endif
-
-  database_binder(sqlite3* db, const std::string& sql) : database_binder(db, conv(sql)) {
-  }
 
 public:
   friend class database;
@@ -213,13 +213,15 @@ public:
     return database_binder(db_, sql);
   }
 
-  database_binder operator<<(const std::wstring& sql) const {
-    return database_binder(db_, sql);
-  }
-
   database_binder operator<<(const std::u16string& sql) const {
     return database_binder(db_, sql);
   }
+
+#ifdef _MSC_VER
+  database_binder operator<<(const std::wstring& sql) const {
+    return database_binder(db_, sql);
+  }
+#endif
 
   operator bool() const {
     return connected_;
